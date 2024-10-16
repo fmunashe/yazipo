@@ -43,8 +43,8 @@ class AdminPanelProvider extends PanelProvider
 //                'primary' => Color::Amber,
                 'primary' => Color::rgb('rgb(128,0,128)'),
             ])
-            ->renderHook('panels::body.end',
-                fn() => view('customFooter'))
+//            ->renderHook('panels::body.end',
+//                fn() => view('customFooter'))
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -76,7 +76,7 @@ class AdminPanelProvider extends PanelProvider
                     ->icon('heroicon-o-user-group'),
                 NavigationGroup::make()
                     ->label('Content Configurations')
-                    ->icon('heroicon-o-currency-dollar'),
+                    ->icon('heroicon-o-phone'),
                 NavigationGroup::make()
                     ->label('System Configurations')
                     ->icon('heroicon-o-cog-6-tooth'),

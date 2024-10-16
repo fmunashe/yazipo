@@ -26,40 +26,39 @@ class BeneficiaryResource extends Resource
             ->columns(3)
             ->schema([
                 Forms\Components\TextInput::make('beneficiary_id')
+                    ->label('Beneficiary ID')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('name')
                     ->required()
-                    ->maxLength(255)
-                    ->default('Not Specified'),
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('phone')
                     ->tel()
-                    ->required()
-                    ->maxLength(255)
-                    ->default('Not Specified'),
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('phone_2')
                     ->tel()
-                    ->required()
-                    ->maxLength(255)
-                    ->default('Not Specified'),
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('phone_3')
                     ->tel()
-                    ->required()
-                    ->maxLength(255)
-                    ->default('Not Specified'),
+                    ->maxLength(255),
                 Forms\Components\DatePicker::make('date_of_birth'),
-                Forms\Components\TextInput::make('sex')
+                Forms\Components\Select::make('sex')
+                    ->searchable()
                     ->required()
-                    ->maxLength(255)
-                    ->default('Not Specified'),
-                Forms\Components\TextInput::make('marital_status')
+                    ->options([
+                        "Female" => "Female",
+                        "Male" => "Male",
+                        "Other" => "Other",
+                    ]),
+                Forms\Components\Select::make('marital_status')
+                    ->searchable()
                     ->required()
-                    ->maxLength(255)
-                    ->default('Not Specified'),
+                    ->options([
+                        "Married" => "Married",
+                        "Single" => "Single",
+                    ]),
                 Forms\Components\TextInput::make('xul_status')
-                    ->required()
-                    ->maxLength(255)
-                    ->default('Not Specified'),
+                    ->maxLength(255),
                 Forms\Components\Select::make('key_population_id')
                     ->searchable()
                     ->relationship('keyPopulation', 'name')
@@ -68,7 +67,7 @@ class BeneficiaryResource extends Resource
                     ->required(),
                 Forms\Components\Select::make('location_id')
                     ->searchable()
-                    ->relationship('location', 'id')
+                    ->relationship('location', 'district')
                     ->preload()
                     ->optionsLimit(5)
                     ->required(),
@@ -80,7 +79,7 @@ class BeneficiaryResource extends Resource
                     ->required(),
                 Forms\Components\Select::make('user_id')
                     ->searchable()
-                    ->relationship('createdBy','id')
+                    ->relationship('createdBy', 'id')
                     ->preload()
                     ->required()
                     ->default(Auth::user()->name),
@@ -113,7 +112,7 @@ class BeneficiaryResource extends Resource
                 Tables\Columns\TextColumn::make('keyPopulation.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('location.id')
+                Tables\Columns\TextColumn::make('location.district')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('project.name')

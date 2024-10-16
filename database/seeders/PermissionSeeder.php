@@ -91,7 +91,32 @@ class PermissionSeeder extends Seeder
             ['title' => 'author_create'],
             ['title' => 'author_show'],
             ['title' => 'author_edit'],
-            ['title' => 'author_delete']
+            ['title' => 'author_delete'],
+            ['title' => 'category_access'],
+            ['title' => 'category_create'],
+            ['title' => 'category_show'],
+            ['title' => 'category_edit'],
+            ['title' => 'category_delete'],
+            ['title' => 'article_access'],
+            ['title' => 'article_create'],
+            ['title' => 'article_show'],
+            ['title' => 'article_edit'],
+            ['title' => 'article_delete'],
+            ['title' => 'dictionary_access'],
+            ['title' => 'dictionary_create'],
+            ['title' => 'dictionary_show'],
+            ['title' => 'dictionary_edit'],
+            ['title' => 'dictionary_delete'] ,
+            ['title' => 'organisation_access'],
+            ['title' => 'organisation_create'],
+            ['title' => 'organisation_show'],
+            ['title' => 'organisation_edit'],
+            ['title' => 'organisation_delete'] ,
+            ['title' => 'utility_access'],
+            ['title' => 'utility_create'],
+            ['title' => 'utility_show'],
+            ['title' => 'utility_edit'],
+            ['title' => 'utility_delete']
         ];
 
         foreach ($permissions as $permission) {

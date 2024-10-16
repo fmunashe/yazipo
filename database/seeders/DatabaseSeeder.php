@@ -26,7 +26,13 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             ServiceSeeder::class,
             ServiceProviderSeeder::class,
-            ModeOfCommunicationSeeder::class
+            ModeOfCommunicationSeeder::class,
+            AuthorSeeder::class,
+            CategorySeeder::class,
+            ArticleSeeder::class,
+            DictionarySeeder::class,
+            UtilitySeeder::class,
+            OrganisationSeeder::class
         ]);
     }
 }

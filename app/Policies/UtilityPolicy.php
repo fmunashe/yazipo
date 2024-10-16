@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\District;
 use App\Models\User;
+use App\Models\Utility;
 
-class DistrictPolicy
+class UtilityPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -13,17 +13,17 @@ class DistrictPolicy
     public function viewAny(User $user): bool
     {
         return $user->roles()->whereHas('permissions', function ($query) {
-            $query->where('title', 'district_access');
+            $query->where('title', 'utility_access');
         })->exists();
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, District $district): bool
+    public function view(User $user, Utility $utility): bool
     {
         return $user->roles()->whereHas('permissions', function ($query) {
-            $query->where('title', 'district_show');
+            $query->where('title', 'utility_show');
         })->exists();
     }
 
@@ -33,54 +33,54 @@ class DistrictPolicy
     public function create(User $user): bool
     {
         return $user->roles()->whereHas('permissions', function ($query) {
-            $query->where('title', 'district_create');
+            $query->where('title', 'utility_create');
         })->exists();
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, District $district): bool
+    public function update(User $user, Utility $utility): bool
     {
         return $user->roles()->whereHas('permissions', function ($query) {
-            $query->where('title', 'district_update');
+            $query->where('title', 'utility_edit');
         })->exists();
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, District $district): bool
+    public function delete(User $user, Utility $utility): bool
     {
         return $user->roles()->whereHas('permissions', function ($query) {
-            $query->where('title', 'district_delete');
+            $query->where('title', 'utility_delete');
         })->exists();
     }
 
     public function deleteAny(User $user): bool
     {
         return $user->roles()->whereHas('permissions', function ($query) {
-            $query->where('title', 'district_delete');
+            $query->where('title', 'utility_delete');
         })->exists();
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, District $district): bool
+    public function restore(User $user, Utility $utility): bool
     {
         return $user->roles()->whereHas('permissions', function ($query) {
-            $query->where('title', 'district_delete');
+            $query->where('title', 'utility_delete');
         })->exists();
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, District $district): bool
+    public function forceDelete(User $user, Utility $utility): bool
     {
         return $user->roles()->whereHas('permissions', function ($query) {
-            $query->where('title', 'district_delete');
+            $query->where('title', 'utility_delete');
         })->exists();
     }
 }
