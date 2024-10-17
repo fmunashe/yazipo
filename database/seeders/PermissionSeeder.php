@@ -126,7 +126,27 @@ class PermissionSeeder extends Seeder
             ['title' => 'currency_create'],
             ['title' => 'currency_show'],
             ['title' => 'currency_edit'],
-            ['title' => 'currency_delete']
+            ['title' => 'currency_delete'],
+            ['title' => 'quote_access'],
+            ['title' => 'quote_create'],
+            ['title' => 'quote_show'],
+            ['title' => 'quote_edit'],
+            ['title' => 'quote_delete'],
+            ['title' => 'opportunity_access'],
+            ['title' => 'opportunity_create'],
+            ['title' => 'opportunity_show'],
+            ['title' => 'opportunity_edit'],
+            ['title' => 'opportunity_delete'],
+            ['title' => 'requirement_access'],
+            ['title' => 'requirement_create'],
+            ['title' => 'requirement_show'],
+            ['title' => 'requirement_edit'],
+            ['title' => 'requirement_delete'],
+            ['title' => 'contact_access'],
+            ['title' => 'contact_create'],
+            ['title' => 'contact_show'],
+            ['title' => 'contact_edit'],
+            ['title' => 'contact_delete']
         ];
 
         foreach ($permissions as $permission) {

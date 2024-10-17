@@ -34,7 +34,11 @@ class DatabaseSeeder extends Seeder
             UtilitySeeder::class,
             OrganisationSeeder::class,
             OrganisationServiceProvisionSeeder::class,
-            CurrencySeeder::class
+            CurrencySeeder::class,
+            QuoteSeeder::class,
+            OpportunitySeeder::class,
+            RequirementSeeder::class,
+            ContactSeeder::class
         ]);
     }
 }
