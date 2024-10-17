@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\V1\ArticlesController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\BeneficiaryController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\DictionaryController;
+use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\UtilityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,14 +38,15 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
 
     // YAZIPO
     Route::get('categories', [CategoryController::class, 'all']);
-    Route::get('knowledgebase', [ArticleController::class, 'all']);
+//    Route::get('knowledgebase', [ArticleController::class, 'all']);
+    Route::get("knowledgebase",[ArticlesController::class,'all']);
 //    Route::post('service-locator', 'ServiceLocatorController@all');
 //    Route::post('opportunities', 'OpportunitiesController@all');
 //    Route::post('dial-a-service', 'OnDemandServicesController@all');
 //    Route::post('request-a-service', 'OnDemandServicesController@request');
     Route::get('dictionary', [DictionaryController::class,'all']);
 //    Route::get('quotes', 'QuoteController@all');
-//    Route::get('locations', 'LocationController@all');
+    Route::get('locations', [LocationController::class,'all']);
     Route::get('utilities', [UtilityController::class,'all']);
 //    Route::post('school', 'SchoolReportingController@all');
 //    Route::post('school/report', 'SchoolReportingController@report');
