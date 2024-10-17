@@ -119,6 +119,6 @@ class CategoryResource extends Resource
 
     public static function getNavigationGroup(): ?string
     {
-        return 'System Configurations';
+        return 'Content Configurations';
     }
 }
