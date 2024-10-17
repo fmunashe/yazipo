@@ -32,7 +32,9 @@ class DatabaseSeeder extends Seeder
             ArticleSeeder::class,
             DictionarySeeder::class,
             UtilitySeeder::class,
-            OrganisationSeeder::class
+            OrganisationSeeder::class,
+            OrganisationServiceProvisionSeeder::class,
+            CurrencySeeder::class
         ]);
     }
 }

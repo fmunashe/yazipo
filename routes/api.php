@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\ArticlesController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\BeneficiaryController;
 use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\Api\V1\CurrencyController;
 use App\Http\Controllers\Api\V1\DictionaryController;
 use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\UtilityController;
@@ -38,29 +39,28 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
 
     // YAZIPO
     Route::get('categories', [CategoryController::class, 'all']);
-//    Route::get('knowledgebase', [ArticleController::class, 'all']);
-    Route::get("knowledgebase",[ArticlesController::class,'all']);
+    Route::get("knowledgebase", [ArticlesController::class, 'all']);
 //    Route::post('service-locator', 'ServiceLocatorController@all');
 //    Route::post('opportunities', 'OpportunitiesController@all');
 //    Route::post('dial-a-service', 'OnDemandServicesController@all');
 //    Route::post('request-a-service', 'OnDemandServicesController@request');
-    Route::get('dictionary', [DictionaryController::class,'all']);
+    Route::get('dictionary', [DictionaryController::class, 'all']);
 //    Route::get('quotes', 'QuoteController@all');
-    Route::get('locations', [LocationController::class,'all']);
-    Route::get('utilities', [UtilityController::class,'all']);
+    Route::get('locations', [LocationController::class, 'all']);
+    Route::get('utilities', [UtilityController::class, 'all']);
 //    Route::post('school', 'SchoolReportingController@all');
 //    Route::post('school/report', 'SchoolReportingController@report');
 //    Route::post('certifications', 'CertificationController@all');
 ////    Route::apiResource('video-streams', VideoStreamController::class);
 //
 //    // Convert Endpoint
-//    Route::get('convert', 'CurrencyController@convert');
+    Route::get('convert', [CurrencyController::class, 'convert']);
 //
 //    Route::middleware('auth:api')->group(function () {
 //        Route::get('test-auth', 'TestController@testAuth');
 //
 //        // Data Collection
-        Route::post('create', [BeneficiaryController::class,'create']);
+    Route::post('create', [BeneficiaryController::class, 'create']);
 //
 //    });
 
