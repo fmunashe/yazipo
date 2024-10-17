@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\BeneficiaryController;
+use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\Api\V1\DictionaryController;
+use App\Http\Controllers\Api\V1\UtilityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,24 +27,24 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
     Route::post('login', [AuthController::class, 'login']);
 
     // Web Widgets
-//    Route::get('key_populations', 'BeneficiaryController@keyPops');
-//    Route::get('location', 'BeneficiaryController@location');
-//    Route::get('mode_of_communications', 'BeneficiaryController@comms');
-//    Route::get('project_entry', 'BeneficiaryController@projectEntry');
-//    Route::get('service_providers', 'BeneficiaryController@serviceProvider');
-//    Route::get('services', 'BeneficiaryController@services');
+    Route::get('key_populations', [BeneficiaryController::class, 'keyPops']);
+    Route::get('location', [BeneficiaryController::class, 'location']);
+    Route::get('mode_of_communications', [BeneficiaryController::class, 'comms']);
+    Route::get('project_entry', [BeneficiaryController::class, 'projectEntry']);
+    Route::get('service_providers', [BeneficiaryController::class, 'serviceProvider']);
+    Route::get('services', [BeneficiaryController::class, 'services']);
 
     // YAZIPO
-//    Route::get('categories', 'CategoryController@all');
-//    Route::post('knowledgebase', 'ArticleController@all');
+    Route::get('categories', [CategoryController::class, 'all']);
+    Route::get('knowledgebase', [ArticleController::class, 'all']);
 //    Route::post('service-locator', 'ServiceLocatorController@all');
 //    Route::post('opportunities', 'OpportunitiesController@all');
 //    Route::post('dial-a-service', 'OnDemandServicesController@all');
 //    Route::post('request-a-service', 'OnDemandServicesController@request');
-//    Route::get('dictionary', 'DictionaryController@all');
+    Route::get('dictionary', [DictionaryController::class,'all']);
 //    Route::get('quotes', 'QuoteController@all');
 //    Route::get('locations', 'LocationController@all');
-//    Route::get('utilities', 'UtilityController@all');
+    Route::get('utilities', [UtilityController::class,'all']);
 //    Route::post('school', 'SchoolReportingController@all');
 //    Route::post('school/report', 'SchoolReportingController@report');
 //    Route::post('certifications', 'CertificationController@all');
@@ -53,7 +57,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
 //        Route::get('test-auth', 'TestController@testAuth');
 //
 //        // Data Collection
-//        Route::post('create', 'BeneficiaryController@create');
+        Route::post('create', [BeneficiaryController::class,'create']);
 //
 //    });
 

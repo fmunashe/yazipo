@@ -1,6 +1,4 @@
 <?php
-
-
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Author;
@@ -10,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    public final function all(Request $request): JsonResponse
+    public function all(Request $request): JsonResponse
     {
         $articles = Article::where('status', 1)
             ->where('country_code', $request->country_code ?? 'NS')
@@ -41,15 +39,15 @@ class ArticleController extends Controller
                     'count' => $articles->count() ?? null,
                     'knowledgebase' => $knowledgebase ?? null,
                 ));
-        } else {
-            return response()
-                ->json(array(
-                    'code' => 200,
-                    'message' => 'Failed To Fetch Knowledgebase',
-                    'count' => $articles->count() ?? null,
-                    'knowledgebase' => null
-                ));
         }
+        return response()
+            ->json(array(
+                'code' => 200,
+                'message' => 'Failed To Fetch Knowledgebase',
+                'count' => $articles->count() ?? null,
+                'knowledgebase' => null
+            ));
+
     }
 
     private function getCategory(int $category_id): Category
