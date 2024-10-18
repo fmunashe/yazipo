@@ -11,34 +11,18 @@ class ArticlesController extends Controller
 {
     public function all(Request $request): JsonResponse
     {
-        $articles = Article::query()->where('status', '=', 1)
+        $articles = Article::query()->with(['category', 'author'])->where('status', '=', 1)
             ->where('country_code', $request->country_code ?? 'ZW')
-            ->get(['id', 'title', 'description', 'imageUrl', 'category_id', 'author_id']);
+            ->paginate(10);
 
         if ($articles->count() > 0) {
-            foreach ($articles as $article) {
-                $image_url = $article->imageUrl === "" ? "https://via.placeholder.com/400" : $article->imageUrl;
-
-                $fetchedCategory = $article->category;
-                $fetchedAuthor = $article->author;
-
-                $knowledgebase[] = [
-                    'category_name' => $fetchedCategory->name,
-                    'category_id' => $fetchedCategory->id,
-                    'author_name' => $fetchedAuthor->name,
-                    'author_description' => $fetchedAuthor->description,
-                    'image_url' => $image_url,
-                    'title' => $article->title,
-                    'description' => $article->description,
-                ];
-            }
 
             return response()
                 ->json(array(
                     'code' => 200,
                     'message' => 'Successfully Fetched Knowledgebase',
                     'count' => $articles->count() ?? null,
-                    'knowledgebase' => $knowledgebase ?? null,
+                    'knowledgebase' => $articles ?? null,
                 ));
         }
         return response()
