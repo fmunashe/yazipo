@@ -22,6 +22,7 @@ class UtilityResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
+            ->columns(3)
             ->schema([
                 Forms\Components\TextInput::make('key')
                     ->required()
@@ -32,7 +33,7 @@ class UtilityResource extends Resource
                 Forms\Components\TextInput::make('value')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('description')
+                Forms\Components\RichEditor::make('description')
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\Toggle::make('status')

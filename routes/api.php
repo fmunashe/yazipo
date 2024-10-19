@@ -7,8 +7,10 @@ use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\CurrencyController;
 use App\Http\Controllers\Api\V1\DictionaryController;
 use App\Http\Controllers\Api\V1\LocationController;
+use App\Http\Controllers\Api\V1\OnDemandServiceController;
 use App\Http\Controllers\Api\V1\OpportunityController;
 use App\Http\Controllers\Api\V1\QuoteController;
+use App\Http\Controllers\Api\V1\ServiceLocatorController;
 use App\Http\Controllers\Api\V1\UtilityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -42,10 +44,10 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
     // YAZIPO
     Route::get('categories', [CategoryController::class, 'all']);
     Route::get("knowledgebase", [ArticlesController::class, 'all']);
-//    Route::post('service-locator', 'ServiceLocatorController@all');
+    Route::post('service-locator', [ServiceLocatorController::class, 'all']);
     Route::post('opportunities', [OpportunityController::class, 'all']);
-//    Route::post('dial-a-service', 'OnDemandServicesController@all');
-//    Route::post('request-a-service', 'OnDemandServicesController@request');
+    Route::post('dial-a-service', [OnDemandServiceController::class, 'all']);
+    Route::post('request-a-service', [OnDemandServiceController::class, 'request']);
     Route::get('dictionary', [DictionaryController::class, 'all']);
     Route::get('quotes', [QuoteController::class, 'all']);
     Route::get('locations', [LocationController::class, 'all']);

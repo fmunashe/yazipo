@@ -146,7 +146,17 @@ class PermissionSeeder extends Seeder
             ['title' => 'contact_create'],
             ['title' => 'contact_show'],
             ['title' => 'contact_edit'],
-            ['title' => 'contact_delete']
+            ['title' => 'contact_delete'],
+            ['title' => 'ondemand_service_access'],
+            ['title' => 'ondemand_service_create'],
+            ['title' => 'ondemand_service_show'],
+            ['title' => 'ondemand_service_edit'],
+            ['title' => 'ondemand_service_delete'],
+            ['title' => 'requested_service_access'],
+            ['title' => 'requested_service_create'],
+            ['title' => 'requested_service_show'],
+            ['title' => 'requested_service_edit'],
+            ['title' => 'requested_service_delete']
         ];
 
         foreach ($permissions as $permission) {

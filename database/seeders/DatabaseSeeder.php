@@ -38,7 +38,9 @@ class DatabaseSeeder extends Seeder
             QuoteSeeder::class,
             OpportunitySeeder::class,
             RequirementSeeder::class,
-            ContactSeeder::class
+            ContactSeeder::class,
+            OnDemandServiceSeeder::class,
+            RequestedServiceSeeder::class
         ]);
     }
 }

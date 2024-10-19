@@ -9,29 +9,10 @@ use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
 {
-    public function all(Request $request): JsonResponse
+    public function all(Request $request)
     {
-        $articles = Article::query()->with(['category', 'author'])->where('status', '=', 1)
+        return Article::query()->with(['category', 'author'])->where('status', '=', 1)
             ->where('country_code', $request->country_code ?? 'ZW')
             ->paginate(10);
-
-        if ($articles->count() > 0) {
-
-            return response()
-                ->json(array(
-                    'code' => 200,
-                    'message' => 'Successfully Fetched Knowledgebase',
-                    'count' => $articles->count() ?? null,
-                    'knowledgebase' => $articles ?? null,
-                ));
-        }
-        return response()
-            ->json(array(
-                'code' => 200,
-                'message' => 'Failed To Fetch Knowledgebase',
-                'count' => $articles->count() ?? null,
-                'knowledgebase' => null
-            ));
-
     }
 }
