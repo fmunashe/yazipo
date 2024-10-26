@@ -44,6 +44,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
     // YAZIPO
     Route::get('categories', [CategoryController::class, 'all']);
     Route::get("knowledgebase", [ArticlesController::class, 'all']);
+    Route::get("knowledgebase/byCategory/{category}", [ArticlesController::class, 'byCategory']);
     Route::post('service-locator', [ServiceLocatorController::class, 'all']);
     Route::post('opportunities', [OpportunityController::class, 'all']);
     Route::post('dial-a-service', [OnDemandServiceController::class, 'all']);
@@ -59,13 +60,6 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
 //
 //    // Convert Endpoint
     Route::get('convert', [CurrencyController::class, 'convert']);
-//
-//    Route::middleware('auth:api')->group(function () {
-//        Route::get('test-auth', 'TestController@testAuth');
-//
-//        // Data Collection
     Route::post('create', [BeneficiaryController::class, 'create']);
-//
-//    });
 
 });
