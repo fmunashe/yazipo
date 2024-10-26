@@ -41,7 +41,8 @@ class DatabaseSeeder extends Seeder
             ContactSeeder::class,
             OnDemandServiceSeeder::class,
             RequestedServiceSeeder::class,
-            SchoolReportingSeeder::class
+            SchoolReportingSeeder::class,
+            CertificationSeeder::class
         ]);
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\ArticlesController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\BeneficiaryController;
 use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\Api\V1\CertificationController;
 use App\Http\Controllers\Api\V1\CurrencyController;
 use App\Http\Controllers\Api\V1\DictionaryController;
 use App\Http\Controllers\Api\V1\LocationController;
@@ -54,12 +55,10 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
     Route::get('quotes', [QuoteController::class, 'all']);
     Route::get('locations', [LocationController::class, 'all']);
     Route::get('utilities', [UtilityController::class, 'all']);
-    Route::post('school', [SchoolReportingController::class,'all']);
-    Route::post('school/report', [SchoolReportingController::class,'report']);
-//    Route::post('certifications', 'CertificationController@all');
+    Route::post('school', [SchoolReportingController::class, 'all']);
+    Route::post('school/report', [SchoolReportingController::class, 'report']);
+    Route::post('certifications', [CertificationController::class,'all']);
 ////    Route::apiResource('video-streams', VideoStreamController::class);
-//
-//    // Convert Endpoint
     Route::get('convert', [CurrencyController::class, 'convert']);
     Route::post('create', [BeneficiaryController::class, 'create']);
 
