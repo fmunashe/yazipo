@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\OnDemandServiceController;
 use App\Http\Controllers\Api\V1\OpportunityController;
 use App\Http\Controllers\Api\V1\QuoteController;
+use App\Http\Controllers\Api\V1\SchoolReportingController;
 use App\Http\Controllers\Api\V1\ServiceLocatorController;
 use App\Http\Controllers\Api\V1\UtilityController;
 use Illuminate\Http\Request;
@@ -53,8 +54,8 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
     Route::get('quotes', [QuoteController::class, 'all']);
     Route::get('locations', [LocationController::class, 'all']);
     Route::get('utilities', [UtilityController::class, 'all']);
-//    Route::post('school', 'SchoolReportingController@all');
-//    Route::post('school/report', 'SchoolReportingController@report');
+    Route::post('school', [SchoolReportingController::class,'all']);
+    Route::post('school/report', [SchoolReportingController::class,'report']);
 //    Route::post('certifications', 'CertificationController@all');
 ////    Route::apiResource('video-streams', VideoStreamController::class);
 //

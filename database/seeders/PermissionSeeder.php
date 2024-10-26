@@ -166,7 +166,12 @@ class PermissionSeeder extends Seeder
             ['title' => 'images_create'],
             ['title' => 'images_show'],
             ['title' => 'images_edit'],
-            ['title' => 'images_delete']
+            ['title' => 'images_delete'],
+            ['title' => 'school_reporting_access'],
+            ['title' => 'school_reporting_create'],
+            ['title' => 'school_reporting_show'],
+            ['title' => 'school_reporting_edit'],
+            ['title' => 'school_reporting_delete']
         ];
 
         foreach ($permissions as $permission) {
