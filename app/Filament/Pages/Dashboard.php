@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Widgets\AnnualArticleNumbersChart;
 use App\Filament\Widgets\DefaultNoAccessMainDashboardWidget;
 use App\Filament\Widgets\DialAServiceChart;
 use App\Filament\Widgets\NewArticlesThisMonth;
@@ -22,6 +23,7 @@ class Dashboard extends \Filament\Pages\Dashboard
             return [
                 TotalArticles::class,
                 NewArticlesThisMonth::class,
+                AnnualArticleNumbersChart::class,
                 DialAServiceChart::class,
                 OpportunitiesChart::class,
                 SchoolReportChart::class
