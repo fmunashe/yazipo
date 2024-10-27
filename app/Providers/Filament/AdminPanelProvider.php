@@ -41,7 +41,6 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogoHeight('80px')
             ->defaultThemeMode(ThemeMode::Light)
             ->colors([
-//                'primary' => Color::Amber,
                 'primary' => Color::rgb('rgb(128,0,128)'),
             ])
 //            ->renderHook('panels::body.end',
@@ -49,7 +48,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
-                Pages\Dashboard::class,
+//                Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
