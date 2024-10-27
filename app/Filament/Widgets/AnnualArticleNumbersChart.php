@@ -11,7 +11,7 @@ use Flowframe\Trend\TrendValue;
 class AnnualArticleNumbersChart extends ChartWidget
 {
     protected static ?string $heading = 'Annual Article Numbers';
-    protected int|string|array $columnSpan = 12;
+    protected int|string|array $columnSpan = 6;
     protected static ?string $maxHeight = '300px';
 
     protected function getData(): array

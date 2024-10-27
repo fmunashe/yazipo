@@ -9,6 +9,7 @@ use App\Filament\Widgets\NewArticlesThisMonth;
 use App\Filament\Widgets\OpportunitiesChart;
 use App\Filament\Widgets\SchoolReportChart;
 use App\Filament\Widgets\TotalArticles;
+use App\Filament\Widgets\ZimChart;
 use Filament\Pages\Dashboard\Concerns\HasFiltersAction;
 
 class Dashboard extends \Filament\Pages\Dashboard
@@ -24,6 +25,7 @@ class Dashboard extends \Filament\Pages\Dashboard
                 TotalArticles::class,
                 NewArticlesThisMonth::class,
                 AnnualArticleNumbersChart::class,
+                ZimChart::class,
                 DialAServiceChart::class,
                 OpportunitiesChart::class,
                 SchoolReportChart::class
