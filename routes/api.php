@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\V1\QuoteController;
 use App\Http\Controllers\Api\V1\SchoolReportingController;
 use App\Http\Controllers\Api\V1\ServiceLocatorController;
 use App\Http\Controllers\Api\V1\UtilityController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -57,9 +58,11 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
     Route::get('utilities', [UtilityController::class, 'all']);
     Route::post('school', [SchoolReportingController::class, 'all']);
     Route::post('school/report', [SchoolReportingController::class, 'report']);
-    Route::post('certifications', [CertificationController::class,'all']);
+    Route::post('certifications', [CertificationController::class, 'all']);
 ////    Route::apiResource('video-streams', VideoStreamController::class);
     Route::get('convert', [CurrencyController::class, 'convert']);
     Route::post('create', [BeneficiaryController::class, 'create']);
+
+    Route::get('images', [ImageController::class, 'index']);
 
 });

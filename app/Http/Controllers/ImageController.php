@@ -2,65 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreImageRequest;
-use App\Http\Requests\UpdateImageRequest;
 use App\Models\Image;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
-    }
+        $images = Image::query()->paginate(10);
+        $modifiedImages = $images->getCollection()->transform(function ($image) {
+            $images = Storage::files('public/' . $image->uuid); // Adjust the path as needed
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreImageRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Image $image)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Image $image)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateImageRequest $request, Image $image)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Image $image)
-    {
-        //
+            $imageUrls = array_map(function ($path) {
+                return env('APP_URL') . Storage::url($path); // Generate the public URL
+            }, $images);
+            return [
+                'image' => $image,
+                'urls' => $imageUrls,
+            ];
+        });
+        return response()->json([
+            'data' => $modifiedImages,
+            'current_page' => $images->currentPage(),
+            'next_page_url' => $images->nextPageUrl(),
+            'last_page' => $images->lastPage(),
+            'prev_page_url' => $images->previousPageUrl(),
+            'per_page' => $images->perPage(),
+            'total' => $images->total(),
+        ]);
     }
 }
