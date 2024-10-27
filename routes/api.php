@@ -47,6 +47,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
     // YAZIPO
     Route::get('categories', [CategoryController::class, 'all']);
     Route::get("knowledgebase", [ArticlesController::class, 'all']);
+    Route::get("knowledgebase/byId/{article}", [ArticlesController::class, 'byArticleId']);
     Route::get("knowledgebase/byCategory/{category}", [ArticlesController::class, 'byCategory']);
     Route::post('service-locator', [ServiceLocatorController::class, 'all']);
     Route::post('opportunities', [OpportunityController::class, 'all']);
