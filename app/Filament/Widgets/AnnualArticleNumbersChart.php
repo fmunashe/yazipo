@@ -42,8 +42,8 @@ class AnnualArticleNumbersChart extends ChartWidget
                 [
                     'label' => Carbon::now()->subYear()->format('Y') . ' Articles',
                     'data' => $previousYear->map(fn(TrendValue $value) => $value->aggregate),
-                    'backgroundColor' => '#9BD0F5',
-                    'borderColor' => '#9BD0F5',
+                    'backgroundColor' => '#f05024',
+                    'borderColor' => '#f05024',
                 ],
             ],
             'labels' => $data->map(fn(TrendValue $value) => Carbon::parse($value->date)->format('M')),
