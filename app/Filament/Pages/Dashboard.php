@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Filament\Widgets\DefaultNoAccessMainDashboardWidget;
 use App\Filament\Widgets\DialAServiceChart;
 use App\Filament\Widgets\NewArticlesThisMonth;
+use App\Filament\Widgets\OpportunitiesChart;
 use App\Filament\Widgets\TotalArticles;
 use Filament\Pages\Dashboard\Concerns\HasFiltersAction;
 
@@ -20,7 +21,8 @@ class Dashboard extends \Filament\Pages\Dashboard
             return [
                 TotalArticles::class,
                 NewArticlesThisMonth::class,
-                DialAServiceChart::class
+                DialAServiceChart::class,
+                OpportunitiesChart::class
             ];
         }
         return [
