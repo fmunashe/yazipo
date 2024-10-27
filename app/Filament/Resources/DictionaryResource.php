@@ -18,6 +18,7 @@ use pxlrbt\FilamentExcel\Exports\ExcelExport;
 class DictionaryResource extends Resource
 {
     protected static ?string $model = Dictionary::class;
+    protected static bool $shouldRegisterNavigation=false;
 
     public static function form(Form $form): Form
     {

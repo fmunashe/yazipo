@@ -46,9 +46,11 @@ class CategoryResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('imageUrl')
+                Tables\Columns\ImageColumn::make('imageUrl')
+                    ->label('Image')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('iconUrl')
+                Tables\Columns\ImageColumn::make('iconUrl')
+                    ->label('Icon')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),

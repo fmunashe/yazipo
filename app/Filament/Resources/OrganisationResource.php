@@ -4,7 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrganisationResource\Pages;
 use App\Filament\Resources\OrganisationResource\RelationManagers;
+use App\Models\District;
 use App\Models\Organisation;
+use App\Models\Province;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -18,6 +20,7 @@ use pxlrbt\FilamentExcel\Exports\ExcelExport;
 class OrganisationResource extends Resource
 {
     protected static ?string $model = Organisation::class;
+    protected static ?string $label = 'Service Locator';
 
     public static function form(Form $form): Form
     {
@@ -63,22 +66,37 @@ class OrganisationResource extends Resource
                 Forms\Components\TextInput::make('operatingHours')
                     ->maxLength(255),
                 Forms\Components\Toggle::make('status')
-                    ->required(),
-                Forms\Components\Select::make('district_id')
-                    ->searchable()
-                    ->preload()
-                    ->relationship('district', 'name')
-                    ->required(),
-                Forms\Components\Select::make('province_id')
-                    ->searchable()
-                    ->preload()
-                    ->relationship('province', 'name')
-                    ->required(),
+                    ->required()
+                    ->default(true),
                 Forms\Components\Select::make('country_id')
                     ->searchable()
                     ->preload()
                     ->relationship('country', 'name')
                     ->required(),
+                Forms\Components\Select::make('province_id')
+                    ->label('Province')
+                    ->searchable()
+                    ->preload()
+                    ->required()
+                    ->options(function (callable $get) {
+                        $countryId = $get('country_id');
+                        if ($countryId) {
+                            return Province::query()->where('country_id', $countryId)->pluck('name', 'id');
+                        }
+                        return [];
+                    }),
+                Forms\Components\Select::make('district_id')
+                    ->label('District')
+                    ->searchable()
+                    ->preload()
+                    ->required()
+                    ->options(function (callable $get) {
+                        $provinceId = $get('province_id');
+                        if ($provinceId) {
+                            return District::query()->where('province_id', $provinceId)->pluck('name', 'id');
+                        }
+                        return [];
+                    }),
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
             ]);
@@ -89,47 +107,31 @@ class OrganisationResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('organisationName')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('organisationLogoUrl')
-                    ->searchable(),
+                    ->label('Name')
+                    ->sortable()
+                    ->searchable()
+                    ->wrap(),
+                Tables\Columns\ImageColumn::make('organisationLogoUrl')
+                    ->label('Logo')
+                    ->sortable()
+                    ->searchable()
+                    ->height(100)
+                    ->width(100),
                 Tables\Columns\TextColumn::make('focalPerson')
+                    ->label('Contact Person')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('cell1')
+                    ->label('Cell')
+                    ->sortable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('cell2')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('cell3')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('websiteLink')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('emailLink')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('whatsAppLink')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('facebookLink')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('instagramLink')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('twitterLink')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('linkedInLink')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('gpsLink')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('streetAddress')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('operatingHours')
-                    ->searchable(),
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('district.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('province.name')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->label('Additional Information')
+                    ->sortable()
+                    ->searchable()
+                    ->wrap(),
                 Tables\Columns\TextColumn::make('country.name')
-                    ->numeric()
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -191,6 +193,7 @@ class OrganisationResource extends Resource
                 SoftDeletingScope::class,
             ]);
     }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();

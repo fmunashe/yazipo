@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ArticleResource\Pages;
-use App\Filament\Resources\ArticleResource\RelationManagers;
-use App\Models\Article;
+use App\Filament\Resources\OnDemandServiceResource\Pages;
+use App\Filament\Resources\OnDemandServiceResource\RelationManagers;
+use App\Models\OnDemandService;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,43 +15,31 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 use pxlrbt\FilamentExcel\Exports\ExcelExport;
 
-class ArticleResource extends Resource
+class OnDemandServiceResource extends Resource
 {
-    protected static ?string $model = Article::class;
-    protected static ?string $label = 'Knowledgebase';
+    protected static ?string $model = OnDemandService::class;
+
+    protected static ?string $label ='Dial-A-Service';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('author_id')
-                    ->searchable()
-                    ->label('Author')
+                Forms\Components\TextInput::make('name')
+                    ->label('Type of Service')
                     ->required()
-                    ->relationship('author', 'name')
-                    ->preload(),
-                Forms\Components\Select::make('category_id')
+                    ->maxLength(255),
+                Forms\Components\Select::make('district_id')
                     ->searchable()
-                    ->label('Category')
-                    ->required()
-                    ->relationship('category', 'name')
-                    ->preload(),
+                    ->relationship('district', 'name')
+                    ->preload()
+                    ->required(),
                 Forms\Components\TextInput::make('country_code')
                     ->required()
                     ->maxLength(255)
                     ->default('ZW'),
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('imageUrl')
-                    ->required()
-                    ->maxLength(255)
-                    ->default('https://via.placeholder.com/400'),
                 Forms\Components\Toggle::make('status')
                     ->required(),
-                Forms\Components\RichEditor::make('description')
-                    ->required()
-                    ->columnSpanFull(),
             ]);
     }
 
@@ -59,30 +47,20 @@ class ArticleResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('imageUrl')
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('title')
-                    ->searchable()
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Type of Service')
                     ->sortable()
-                    ->wrap(),
-                Tables\Columns\TextColumn::make('category.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('author.name')
-                    ->label('Author Name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('author.description')
-                    ->label('Author Description')
-                    ->numeric()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('district.name')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\ImageColumn::make('country_code')
-                    ->label('Locale')
                     ->searchable()
                     ->sortable()
+                    ->label('Country')
                     ->getStateUsing(fn($record) => asset("images/flags/{$record->country_code}.svg")),
                 Tables\Columns\IconColumn::make('status')
+                    ->sortable()
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -130,10 +108,10 @@ class ArticleResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListArticles::route('/'),
-            'create' => Pages\CreateArticle::route('/create'),
-            'view' => Pages\ViewArticle::route('/{record}'),
-            'edit' => Pages\EditArticle::route('/{record}/edit'),
+            'index' => Pages\ListOnDemandServices::route('/'),
+            'create' => Pages\CreateOnDemandService::route('/create'),
+            'view' => Pages\ViewOnDemandService::route('/{record}'),
+            'edit' => Pages\EditOnDemandService::route('/{record}/edit'),
         ];
     }
 

@@ -18,7 +18,7 @@ use pxlrbt\FilamentExcel\Exports\ExcelExport;
 class UtilityResource extends Resource
 {
     protected static ?string $model = Utility::class;
-
+protected static bool $shouldRegisterNavigation =false;
     public static function form(Form $form): Form
     {
         return $form

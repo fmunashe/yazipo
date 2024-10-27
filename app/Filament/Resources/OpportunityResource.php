@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\OpportunityResource\Pages;
 use App\Filament\Resources\OpportunityResource\RelationManagers;
+use App\Models\District;
 use App\Models\Opportunity;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -32,16 +33,23 @@ class OpportunityResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Select::make('district_id')
-                    ->searchable()
-                    ->preload()
-                    ->relationship('district', 'name')
-                    ->required(),
                 Forms\Components\Select::make('province_id')
                     ->searchable()
                     ->preload()
                     ->relationship('province', 'name')
                     ->required(),
+                Forms\Components\Select::make('district_id')
+                    ->label('District')
+                    ->searchable()
+                    ->preload()
+                    ->required()
+                    ->options(function (callable $get) {
+                        $provinceId = $get('province_id');
+                        if ($provinceId) {
+                            return District::query()->where('province_id', $provinceId)->pluck('name', 'id');
+                        }
+                        return [];
+                    }),
                 Forms\Components\TextInput::make('dueDate')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('country_code')
