@@ -6,6 +6,7 @@ use App\Filament\Widgets\DefaultNoAccessMainDashboardWidget;
 use App\Filament\Widgets\DialAServiceChart;
 use App\Filament\Widgets\NewArticlesThisMonth;
 use App\Filament\Widgets\OpportunitiesChart;
+use App\Filament\Widgets\SchoolReportChart;
 use App\Filament\Widgets\TotalArticles;
 use Filament\Pages\Dashboard\Concerns\HasFiltersAction;
 
@@ -22,7 +23,8 @@ class Dashboard extends \Filament\Pages\Dashboard
                 TotalArticles::class,
                 NewArticlesThisMonth::class,
                 DialAServiceChart::class,
-                OpportunitiesChart::class
+                OpportunitiesChart::class,
+                SchoolReportChart::class
             ];
         }
         return [
