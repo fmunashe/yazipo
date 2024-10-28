@@ -59,7 +59,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
     Route::get('utilities', [UtilityController::class, 'all']);
     Route::post('school', [SchoolReportingController::class, 'all']);
     Route::post('school/report', [SchoolReportingController::class, 'report']);
-    Route::post('certifications', [CertificationController::class, 'all']);
+    Route::get('certifications', [CertificationController::class, 'all']);
 ////    Route::apiResource('video-streams', VideoStreamController::class);
     Route::get('convert', [CurrencyController::class, 'convert']);
     Route::post('create', [BeneficiaryController::class, 'create']);
