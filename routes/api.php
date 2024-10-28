@@ -49,9 +49,9 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
     Route::get("knowledgebase", [ArticlesController::class, 'all']);
     Route::get("knowledgebase/byId/{article}", [ArticlesController::class, 'byArticleId']);
     Route::get("knowledgebase/byCategory/{category}", [ArticlesController::class, 'byCategory']);
-    Route::post('service-locator', [ServiceLocatorController::class, 'all']);
-    Route::post('opportunities', [OpportunityController::class, 'all']);
-    Route::post('dial-a-service', [OnDemandServiceController::class, 'all']);
+    Route::get('service-locator', [ServiceLocatorController::class, 'all']);
+    Route::get('opportunities', [OpportunityController::class, 'all']);
+    Route::get('dial-a-service', [OnDemandServiceController::class, 'all']);
     Route::post('request-a-service', [OnDemandServiceController::class, 'request']);
     Route::get('dictionary', [DictionaryController::class, 'all']);
     Route::get('quotes', [QuoteController::class, 'all']);
