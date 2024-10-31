@@ -21,7 +21,9 @@
         "outerweb/filament-image-library": "^2.6",
         "pxlrbt/filament-excel": "^2.3",
         "saade/filament-laravel-log": "^3.0",
-        "shuvroroy/filament-spatie-laravel-health": "^2.1"
+        "shuvroroy/filament-spatie-laravel-health": "^2.1",
+        "pbmedia/laravel-ffmpeg": "^8.3",
+        "php-ffmpeg/php-ffmpeg": "^1.2"
     },
     "require-dev": {
         "spatie/laravel-ignition": "^2.0",

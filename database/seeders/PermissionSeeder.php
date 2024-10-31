@@ -181,7 +181,17 @@ class PermissionSeeder extends Seeder
             ['title' => 'certification_create'],
             ['title' => 'certification_show'],
             ['title' => 'certification_edit'],
-            ['title' => 'certification_delete']
+            ['title' => 'certification_delete'],
+            ['title' => 'video_access'],
+            ['title' => 'video_create'],
+            ['title' => 'video_show'],
+            ['title' => 'video_edit'],
+            ['title' => 'video_delete'],
+            ['title' => 'video_stream_access'],
+            ['title' => 'video_stream_create'],
+            ['title' => 'video_stream_show'],
+            ['title' => 'video_stream_edit'],
+            ['title' => 'video_stream_delete']
         ];
 
         foreach ($permissions as $permission) {
