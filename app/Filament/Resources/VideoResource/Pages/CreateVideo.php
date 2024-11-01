@@ -14,8 +14,7 @@ class CreateVideo extends CreateRecord
     {
         $data['type'] = Storage::disk('videos_disk')->mimeType($data['attachment']);
         $data['disk'] = "videos_disk";
-//        $path = $data['attachment']->store('videos', 'videos_disk');
-//        $data['path'] = $path;
+        $data['path'] = $data['attachment'];
         return $data;
     }
 }

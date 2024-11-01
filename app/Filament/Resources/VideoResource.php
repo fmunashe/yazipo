@@ -33,7 +33,6 @@ class VideoResource extends Resource
                     ->disk('videos_disk')
                     ->directory('videos')
                     ->storeFileNamesIn('original_name'),
-//                    ->gets(fn ($file, callable $set) => $set('file_url', $file)),
             ]);
     }
 

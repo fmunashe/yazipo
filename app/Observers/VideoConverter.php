@@ -13,7 +13,7 @@ class VideoConverter
      */
     public function created(Video $video): void
     {
-//        ConvertVideoForStreaming::dispatch($video);
+        ConvertVideoForStreaming::dispatch($video);
     }
 
     /**
