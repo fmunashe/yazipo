@@ -30,7 +30,7 @@ class VideoResource extends Resource
                     ->maxSize(20000)
                     ->acceptedFileTypes(['video/mp4', 'video/avi', 'video/mpeg', 'video/quicktime'])
                     ->columnSpanFull()
-                    ->disk('videos_disk')
+                    ->disk('public')
                     ->directory('videos')
                     ->storeFileNamesIn('original_name'),
             ]);

@@ -12,8 +12,8 @@ class CreateVideo extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $data['type'] = Storage::disk('videos_disk')->mimeType($data['attachment']);
-        $data['disk'] = "videos_disk";
+        $data['type'] = Storage::disk('public')->mimeType($data['attachment']);
+        $data['disk'] = "public";
         $data['path'] = $data['attachment'];
         return $data;
     }
