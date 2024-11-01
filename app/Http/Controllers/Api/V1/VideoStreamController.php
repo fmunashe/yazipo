@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreVideoStreamRequest;
-use App\Http\Requests\UpdateVideoStreamRequest;
 use App\Models\VideoStream;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
@@ -21,18 +19,7 @@ class VideoStreamController extends Controller
         return response()->json($streams);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreVideoStreamRequest $request):StreamedResponse
+    public function show($videoStream): StreamedResponse
     {
         $path = Storage::disk('streamable_videos');
         if (!$path->exists("/$videoStream")) {
@@ -48,37 +35,5 @@ class VideoStreamController extends Controller
             'Content-Type' => $contentType,
             'Content-Disposition' => 'inline; filename="' . $videoStream,
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(VideoStream $videoStream)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(VideoStream $videoStream)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateVideoStreamRequest $request, VideoStream $videoStream)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(VideoStream $videoStream)
-    {
-        //
     }
 }

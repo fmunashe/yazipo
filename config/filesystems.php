@@ -49,6 +49,12 @@ return [
             'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
+        'streamable_videos' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/streamable_videos'),
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',
