@@ -64,6 +64,8 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
     Route::get('convert', [CurrencyController::class, 'convert']);
     Route::post('create', [BeneficiaryController::class, 'create']);
     Route::get('images', [ImageController::class, 'index']);
+    Route::get('imagePath/{path}/show', [ArticlesController::class, 'show'])
+        ->where('path', '.*');
 
 });
 Route::apiResource('video-streams', VideoStreamController::class);

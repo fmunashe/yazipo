@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ArticlesController extends Controller
 {
@@ -29,5 +31,16 @@ class ArticlesController extends Controller
     public function byArticleId(Article $article): Article
     {
         return $article->load(['category', 'author']);
+    }
+
+    public function show($path): BinaryFileResponse|JsonResponse
+    {
+        $decodedPath = urldecode($path);
+
+        $imagePath = storage_path('app/public/' . $decodedPath);
+        if (file_exists($imagePath)) {
+            return response()->file($imagePath);
+        }
+        return response()->json("image not found");
     }
 }

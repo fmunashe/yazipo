@@ -49,6 +49,13 @@ class ArticleResource extends Resource
                     ->default('https://via.placeholder.com/400'),
                 Forms\Components\Toggle::make('status')
                     ->required(),
+                Forms\Components\FileUpload::make('image_urls')
+                    ->label('Upload Images')
+                    ->multiple()
+                    ->image()
+                    ->disk('public')
+                    ->directory('images')
+                    ->columnSpan(2),
                 Forms\Components\RichEditor::make('description')
                     ->required()
                     ->columnSpanFull(),
@@ -82,6 +89,8 @@ class ArticleResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->getStateUsing(fn($record) => asset("images/flags/{$record->country_code}.svg")),
+                Tables\Columns\TextColumn::make('image_urls')
+                ->sortable(),
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')

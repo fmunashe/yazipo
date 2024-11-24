@@ -14,6 +14,10 @@ class Article extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'image_urls' => 'array'
+    ];
+
     public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class);
