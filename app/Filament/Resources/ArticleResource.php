@@ -74,8 +74,8 @@ class ArticleResource extends Resource
                     ->sortable()
                     ->wrap(),
                 Tables\Columns\TextColumn::make('category.name')
-                    ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('author.name')
                     ->label('Author Name')
                     ->numeric()
@@ -90,7 +90,7 @@ class ArticleResource extends Resource
                     ->sortable()
                     ->getStateUsing(fn($record) => asset("images/flags/{$record->country_code}.svg")),
                 Tables\Columns\TextColumn::make('image_urls')
-                ->sortable(),
+                    ->sortable(),
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
