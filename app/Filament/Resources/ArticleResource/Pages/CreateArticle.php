@@ -16,7 +16,7 @@ class CreateArticle extends CreateRecord
     {
         if ($form->getState()['image_urls']) {
             $urls = collect($form->getState()['image_urls'])->map(function ($file) {
-                return Storage::disk('public')->url($file);
+                env('APP_URL')."/storage/". Storage::disk('public')->url($file);
             });
 
             $record->update([
