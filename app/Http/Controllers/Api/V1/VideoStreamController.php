@@ -15,7 +15,7 @@ class VideoStreamController extends Controller
      */
     public function index(): JsonResponse
     {
-        $streams = VideoStream::all();
+        $streams = VideoStream::query()->with(['video','video.category'])->get();
         return response()->json($streams);
     }
 

@@ -33,6 +33,12 @@ class VideoResource extends Resource
                     ->disk('public')
                     ->directory('videos')
                     ->storeFileNamesIn('original_name'),
+                Forms\Components\Select::make('category_id')
+                    ->searchable()
+                    ->label('Category')
+                    ->required()
+                    ->relationship('category', 'name')
+                    ->preload(),
             ]);
     }
 
