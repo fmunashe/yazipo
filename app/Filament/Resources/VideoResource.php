@@ -27,7 +27,7 @@ class VideoResource extends Resource
                     ->label('Upload Video')
                     ->required()
                     ->preserveFilenames()
-                    ->maxSize(20000)
+                    ->maxSize(512000)
                     ->acceptedFileTypes(['video/mp4', 'video/avi', 'video/mpeg', 'video/quicktime'])
                     ->columnSpanFull()
                     ->disk('public')
