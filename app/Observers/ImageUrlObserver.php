@@ -13,12 +13,14 @@ class ImageUrlObserver
     public function created(Article $article): void
     {
         $urls = [];
-        foreach ($article->image_urls as $url) {
-            $urls[] =Storage::disk('public')->url($url);
+        if ($article->image_urls != null) {
+            foreach ($article->image_urls as $url) {
+                $urls[] = Storage::disk('public')->url($url);
+            }
+            $article->update([
+                'image_urls' => $urls
+            ]);
         }
-        $article->update([
-            'image_urls' => $urls
-        ]);
     }
 
     /**
