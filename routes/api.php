@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\DictionaryController;
 use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\OnDemandServiceController;
 use App\Http\Controllers\Api\V1\OpportunityController;
+use App\Http\Controllers\Api\V1\PollController;
 use App\Http\Controllers\Api\V1\QuoteController;
 use App\Http\Controllers\Api\V1\SchoolReportingController;
 use App\Http\Controllers\Api\V1\ServiceLocatorController;
@@ -69,3 +70,5 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
 
 });
 Route::apiResource('video-streams', VideoStreamController::class);
+Route::post('polls/save', [PollController::class, 'bulkSave']);
+Route::apiResource('polls', PollController::class);
