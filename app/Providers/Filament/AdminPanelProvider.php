@@ -6,7 +6,6 @@ use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Navigation\MenuItem;
 use Filament\Navigation\NavigationGroup;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -21,6 +20,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Outerweb\FilamentImageLibrary\Filament\Plugins\FilamentImageLibraryPlugin;
+
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -35,12 +35,15 @@ class AdminPanelProvider extends PanelProvider
             ->profile(isSimple: false)
             ->emailVerification()
             ->brandName('Yazipo')
-            ->brandLogo(url('https://ama2k.org/images/youth_advocates_logo.png'))
-            ->favicon(url('https://ama2k.org/images/youth_advocates_logo.png'))
-            ->brandLogoHeight('80px')
+            ->brandLogo(asset('images/logo.png'))
+            ->favicon(asset('images/logo.png'))
+//            ->brandLogo(url('https://ama2k.org/images/youth_advocates_logo.png'))
+//            ->favicon(url('https://ama2k.org/images/youth_advocates_logo.png'))
+            ->brandLogoHeight('60px')
             ->defaultThemeMode(ThemeMode::Light)
             ->colors([
-                'primary' => Color::rgb('rgb(128,0,128)'),
+//                'primary' => Color::rgb('rgb(128,0,128)'),
+                'primary' => Color::rgb('rgb(121,89,0)'),
             ])
 //            ->renderHook('panels::body.end',
 //                fn() => view('customFooter'))
