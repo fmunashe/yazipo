@@ -8,6 +8,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -87,6 +88,11 @@ class User extends Authenticatable implements  FilamentUser
     public function getFilamentAvatarUrl(): ?string
     {
         return $this->avatar_url ? Storage::url("$this->avatar_url") : null;
+    }
+
+    public function events(): HasMany
+    {
+        return $this->hasMany(Event::class);
     }
 
 }

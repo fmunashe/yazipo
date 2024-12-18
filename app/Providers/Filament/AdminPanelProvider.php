@@ -20,6 +20,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Outerweb\FilamentImageLibrary\Filament\Plugins\FilamentImageLibraryPlugin;
+use Saade\FilamentFullCalendar\FilamentFullCalendarPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -71,6 +72,14 @@ class AdminPanelProvider extends PanelProvider
                 FilamentImageLibraryPlugin::make()
                     ->addAllowedDisk('public', 'Public images')
                     ->navigationSort(10),
+                FilamentFullCalendarPlugin::make()
+                    ->schedulerLicenseKey('')
+                    ->selectable(true)
+                    ->editable()
+                    ->timezone('')
+                    ->locale("en")
+                    ->plugins([])
+                    ->config([])
             ])
             ->authMiddleware([
                 Authenticate::class,
@@ -81,6 +90,9 @@ class AdminPanelProvider extends PanelProvider
                 NavigationGroup::make()
                     ->label('User Management')
                     ->icon('heroicon-o-user-group'),
+                NavigationGroup::make()
+                    ->label('Events Calendar')
+                    ->icon('heroicon-s-plus'),
                 NavigationGroup::make()
                     ->label('Content Configurations')
                     ->icon('heroicon-o-phone'),

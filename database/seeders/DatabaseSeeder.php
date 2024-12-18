@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             QuestionSeeder::class,
             OptionSeeder::class,
             PollResponseSeeder::class,
+            EventSeeder::class,
             PermissionSeeder::class,
             RoleSeeder::class,
             PermissionRoleSeeder::class,
