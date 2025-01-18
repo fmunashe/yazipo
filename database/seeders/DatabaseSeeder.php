@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             PollSeeder::class,
+            AudioSeeder::class,
             QuestionSeeder::class,
             OptionSeeder::class,
             PollResponseSeeder::class,

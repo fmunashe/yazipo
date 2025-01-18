@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\V1\SchoolReportingController;
 use App\Http\Controllers\Api\V1\ServiceLocatorController;
 use App\Http\Controllers\Api\V1\UtilityController;
 use App\Http\Controllers\Api\V1\VideoStreamController;
+use App\Http\Controllers\AudioController;
 use App\Http\Controllers\ImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -72,3 +73,4 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1'], function () {
 Route::apiResource('video-streams', VideoStreamController::class);
 Route::post('polls/save', [PollController::class, 'bulkSave']);
 Route::apiResource('polls', PollController::class);
+Route::apiResource('audios', AudioController::class);
